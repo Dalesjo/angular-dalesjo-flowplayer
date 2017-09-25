@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html data-ng-app="videoplayer" lang="en">
+	<head>
+		<title>Dalesjo Video</title>
+		<meta charset="UTF-8">
+		<meta name="robots" content="noindex, nofollow">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../_js/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../_js/flowplayer/flowplayer.commercial-7.1.2/skin/skin.css">
+    <script src="../../_js/angular-1.5.7/angular.min.js"></script>
+    <script src="../../_js/angular-1.5.7/angular-route.min.js"></script>
+    <script src="../../_js/angular-1.5.7/angular-animate.min.js"></script>
+    <script src="../../_js/angular-1.5.7/angular-touch.min.js"></script>
+    <script src="../../_js/angular-1.5.7/i18n/angular-locale_sv-se.js"></script>
+		<script src="../src/flowplayer-angular.js"></script>
+
+    <script src="../../_js/flowplayer/hls.js-0.8.2/dist/hls.light.min.js"></script>
+    <script src="../../_js/flowplayer/flowplayer.commercial-7.1.2/flowplayer.js"></script>
+    <script src="../../_js/flowplayer/flowplayer-hlsjs-1.1.1/flowplayer.hlsjs.light.js"></script>
+    <script src="../../_js/flowplayer/flowplayer-thumbnails-master-20170913/flowplayer.thumbnails.js"></script>
+	<!--
+	<script src="../_js/flowplayer/hls.js-0.8.2/dist/hls.light.min.js"></script>
+	<script src="../_js/flowplayer/flowplayer.commercial-6.0.5/flowplayer.min.js"></script>
+	<script src="../_js/flowplayer/flowplayer-hlsjs-master-20160630"></script>
+	<script src="../_js/flowplayer/flowplayer-thumbnails-master-20160304/flowplayer.thumbnails.min.js"></script>
+-->
+    <style type="text/css">
+      .flowplayer.is-playing,
+      .flowplayer.is-paused,
+      .flowplayer.is-fullscreen { background-color: #000000 !important; }
+
+      /* Färg vid fullskärm om skärm inte är 16:9 */
+      video {
+        background-color:black !important;
+      }
+
+      canvas {
+        backgroundGradient: 'none',
+        border:'2px solid #778899 !important'
+      }
+
+
+      /* Quality menu for flowplayer */
+      .fp-menu.fp-qsel-menu {
+        font-weight:bold;
+
+      }
+
+      /* Header of the quality menu */
+      .fp-menu.fp-qsel-menu > strong {
+        display:none;
+        !font-size:40px !important;
+      }
+
+      /* Different qualities */
+      .fp-menu.fp-qsel-menu > a {
+        padding: 0.5em 2em 0.5em 1em;
+      }
+
+      .fp-timeline.fp-bar {
+        cursor: pointer;
+      }
+
+			/**
+			 * Bakgrundsfärg på meny i flowplayer
+			 */
+      .flowplayer .fp-controls {
+				background-color:rgba(0, 0, 0, 0.4);
+      }
+
+			/**
+			 * Accentfärg till spelaren.
+			 */
+			.flowplayer .fp-color {
+  			background-color: #990000;
+				/* background-color: #ac283a;
+			 background-color: #3d83ae; */
+			}
+
+			.flowplayer.volumeRight .fp-volume {
+				margin-right: 1em !important;
+				margin-left: auto !important;
+			}
+
+			.flowplayer.is-dvr .fp-elapsed {
+				display:none !important;
+			}
+
+			.flowplayer.fp-full.is-dvr .fp-duration:before, .flowplayer.fp-full .fp-remaining:before {
+				content: "";
+			}
+
+			.flowplayer.is-live.is-dvr .fp-duration {
+			  color: #aaaaaa !important;
+				/* margin-left:0.8em;
+				list-style-type: square;
+				display: list-item; */
+				font-weight:bold;
+			}
+
+			.flowplayer.is-live.is-dvr.is-live-position .fp-duration {
+			  color: #ffffff !important;
+
+			}
+
+			.endscreen .when-video-ends {
+			    position: absolute;
+			    left: -9999em;
+			    top: 0;
+			    opacity: 0;
+			    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+			    width: 100%;
+					height:100%;
+			    -webkit-transition: opacity 2s;
+			    -moz-transition: opacity 2s;
+			    transition: opacity 2s;
+					background-color:rgba(0, 0, 0, 0.6);
+			}
+
+			.endscreen .when-video-ends h1 {
+				color:white;
+			}
+
+			/**
+			 * Döljer kontrollpanelen för videospelaren, lägg till .endscreen.is-finished .fp-engine för att dölja videon också
+			 * @type {[type]}
+			 */
+			.endscreen.is-finished .fp-ui
+			 {
+			    top: -9999em
+			}
+			.endscreen.is-finished .when-video-ends {
+			    left: 0;
+			    opacity: 1;
+			    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100)
+			}
+
+    </style>
+    <script src="player.js" type="text/javascript"></script>
+    <script>
+    flowplayer(function (api, root) {
+      var fsbutton = root.querySelector(".fp-fullscreen");
+
+      // append fullscreen button after HD menu is added on ready
+      api.on("ready", function () {
+        root.querySelector(".fp-controls").appendChild(fsbutton);
+      });
+    });
+    </script>
+
+	</head>
+	<body class="body">
+
+
+    <div class="container" id="dalesjoVideoAdminApp" data-ng-view="">
+		</div>
+		<hr>
+    <div class="container">
+			<h1>Menu</h1>
+      <ul>
+        <li><a href="#/">startpage</a></li>
+        <li><a href="#/event">event</a></li>
+				<li><a href="#/seek/600">Seek</a></li>
+				<li><a href="#/style">Style</a></li>
+				<li><a href="#/trigger">Trigger</a></li>
+				<li><a href="#/touch">Touch</a></li>
+				<li><a href="#/upload">Upload</a></li>
+				<li><a href="#/dvr">DVR</a></li>
+      </ul>
+    </div>
+     </body>
+
+</html>

@@ -1,0 +1,51 @@
+<p>
+    <div flowplayer="options"
+                api="player"
+                class="fp-full no-buffer fp-edgy endscreen">
+
+                <div class="when-video-ends">
+                  <div style="margin:5em 2em;">
+                    <h1>{{ title }}</h1>
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div>
+                          <img src="//static.dalesjo.com/images/clips/0/000/000/252/ca50e255/540p.jpg" alt="..." class="img-responsive">
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div>
+                          <img src="//static.dalesjo.com/images/clips/0/000/000/202/static/540p.jpg" alt="..." class="img-responsive">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                   <!-- an element with class "fp-toggle" automatically works as a replay button -->
+                   <a class="fp-toggle">Replay</a>
+                </div>
+    </div>
+</p>
+<p>
+  <h1>Trigger 2</h1>
+
+
+  <code>
+      <p>
+        {{ debug }}
+      </p>
+      <p>
+        {{ title }}
+      </p>
+  </code>
+  <ul>
+    <li><a ng-click="play()">Play new clip</a></li>
+    <li><a ng-click="seekTo(4944)">Skip to end</a></li>
+    <li><a ng-click="title='Super Terrifc happy Title'";>Change Title</a></li>
+    <li><a ng-click="title='This title is something else.'";>Change Title Again</a></li>
+  </ul>
+
+
+
+</p>
