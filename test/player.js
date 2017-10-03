@@ -1,4 +1,4 @@
-var videoplayer = angular.module('videoplayer', ['ngRoute','ngTouch','flowplayerAngular']);
+var videoplayer = angular.module('videoplayer', ['ngRoute','ngTouch','dalesjo.flowplayer']);
 
 videoplayer.config(function($routeProvider){
 	$routeProvider.when('/',{
@@ -248,8 +248,6 @@ videoplayer.controller('event',function($scope,$routeParams){
 				 		},
 				 		title: "22 juni, Konsert med Mattias och Therese Martinson"
 				 }
-
-
     };
 
 	$scope.beforeseek = function(e, api, video) {
